@@ -1,0 +1,12 @@
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Large dataset files
+output.csv
+dataset/
+employee_reviews.csv
+*.csv
