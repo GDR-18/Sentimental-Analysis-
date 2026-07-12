@@ -1,3 +1,4 @@
+from preprocessing import is_valid_text
 import streamlit as st
 from sentiment_analysis import analyze_sentiment
 
@@ -72,15 +73,19 @@ if st.button("🔍 Analyze Review", use_container_width=True):
     if review.strip() == "":
         st.error("Please enter a review.")
         st.stop()
+    # === FILTER CHECK HERE ===
+    if not is_valid_text(review):
+        st.error("❌ Invalid Input Detected")
+        st.metric(label="Status", value="Invalid Input")
+        st.stop()
 
+    # If it passes validation, analyze it
     result = analyze_sentiment(review)
-
     rating = result["rating"]
     category = result["category"]
 
-    st.subheader("📈 Analysis Result")
+    st.subheader("📊 Analysis Result")
     st.caption(f"Review Length: {len(review.split())} words")
-
     # INVALID INPUT
     if rating is None:
 
