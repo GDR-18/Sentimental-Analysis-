@@ -1,4 +1,8 @@
 from preprocessing import is_valid_text
+
+import nltk
+nltk.download('vader_lexicon')
+
 import streamlit as st
 from sentiment_analysis import analyze_sentiment
 
